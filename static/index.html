@@ -1,0 +1,20 @@
+<html ng-app>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script type="text/javascript">
+	function AngularCtrl($scope)
+	{
+		console.log("connecting to socket.io");
+		var socket = io.connect("http://zachpinner.com:3000");
+		socket.on('connect', function() {
+			console.log("connected to socket.io");
+			socket.emit('query',{}, function(err,docs) {
+				$scope.data = docs;
+			});
+		});
+	}
+</script>
+<div ng-controller="AngularCtrl">
+{{data}}
+</div>
+</html>
