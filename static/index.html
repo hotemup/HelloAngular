@@ -5,7 +5,7 @@
 	function AngularCtrl($scope)
 	{
 		console.log("connecting to socket.io");
-		var socket = io.connect("http://zachpinner.com:3000");
+		var socket = io.connect();
 		socket.on('connect', function() {
 			console.log("connected to socket.io");
 			socket.emit('query',{}, function(err,docs) {
